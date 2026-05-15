@@ -110,11 +110,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
 .d4{transition-delay:.28s}.d5{transition-delay:.35s}.d6{transition-delay:.42s}
 
-/* ── NAVBAR ── */
+/* ── NAVBAR MOBILE DECONGESTION FIX ── */
 #nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;transition:background .3s,box-shadow .3s}
 #nav.s{background:rgba(255,255,255,.96);backdrop-filter:blur(16px);box-shadow:0 1px 18px rgba(0,0,0,.07)}
 .ni{height:64px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.logo{display:flex;align-items:center;gap:9px;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.15rem;color:var(--dark)}
+.logo{display:flex;align-items:center;gap:9px;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.15rem;color:var(--dark);flex-shrink:0}
 .logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--ice),var(--ice-dark));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(14,165,233,.32)}
 .logo-sub{font-size:.58rem;color:var(--muted);font-weight:500;display:block;line-height:1;margin-top:1px}
 .nl{display:flex;gap:.1rem;align-items:center}
@@ -122,19 +122,26 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .nl a:hover,.nl a.on{background:var(--frost);color:var(--ice)}
 .nr{display:flex;align-items:center;gap:.55rem}
 
-.ham{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:38px;height:38px;padding:0;border-radius:8px;background:var(--g100);border:none;cursor:pointer}
-.ham span{width:20px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;display:block}
-.ham.o span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.ham{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;padding:0;border-radius:8px;background:var(--g100);border:none;cursor:pointer;flex-shrink:0;z-index:1001;position:relative}
+.ham span{width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;display:block;transform-origin:center}
+.ham.o span:nth-child(1){transform:rotate(45deg) translate(5px, 5px)}
 .ham.o span:nth-child(2){opacity:0}
-.ham.o span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.ham.o span:nth-child(3){transform:rotate(-45deg) translate(5px, -5px)}
 
-.mob{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);padding:.85rem 1.2rem 1.4rem;flex-direction:column;gap:.35rem;z-index:999;box-shadow:0 14px 40px rgba(0,0,0,.1)}
+.mob{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);padding:1rem 1.5rem 1.75rem;flex-direction:column;gap:.35rem;z-index:999;box-shadow:0 14px 40px rgba(0,0,0,.15);max-height:calc(100vh - 64px);overflow-y:auto}
 .mob.o{display:flex}
-.mob a{padding:.7rem 1rem;border-radius:11px;font-weight:600;font-size:.875rem;color:var(--dark2)}
+.mob a{padding:.8rem 1rem;border-radius:11px;font-weight:600;font-size:.95rem;color:var(--dark2)}
 .mob a:hover{background:var(--frost);color:var(--ice)}
-.mob-acts{display:flex;gap:.5rem;margin-top:.65rem;flex-wrap:wrap}
-.mob-acts a{flex:1;min-width:130px;justify-content:center}
-@media(max-width:768px){.nl{display:none}.ham{display:flex}}
+.mob-acts{display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap}
+.mob-acts a{display:flex;align-items:center;justify-content:center;flex:1;min-width:140px;padding:.85rem;font-size:.9rem}
+
+@media(max-width:991px){
+  .nl {display:none}
+  .ham {display:flex}
+}
+@media(max-width:480px){
+  .nr .btn {display:none} 
+}
 
 /* ── HERO ── */
 #hero{padding:118px 0 70px;background:linear-gradient(158deg,var(--frost) 0%,#fff 42%,#fff7f0 100%);position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center}
@@ -182,7 +189,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .ti-s{font-size:.73rem;color:var(--muted)}
 @media(max-width:768px){.trow{grid-template-columns:1fr 1fr;gap:1rem}}
 
-/* ── ABOUT ── */
+/* ── ABOUT & RATING CARD MOBILE FIX ── */
 #about{padding:90px 0;background:#fff}
 .agrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .amedia{position:relative}
@@ -197,7 +204,15 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .af1{position:absolute;top:-14px;right:-14px;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.1);padding:.75rem 1.1rem;text-align:center;border:1px solid var(--g100);min-width:100px;z-index:5}
 .af1-n{font-family:'Outfit',sans-serif;font-weight:800;font-size:2rem;color:var(--ice);line-height:1}
 .af1-l{font-size:.65rem;color:var(--muted);font-weight:600;margin-top:3px}
-.af2{position:absolute;bottom:-14px;left:-14px;background:#fff;border-radius:13px;box-shadow:0 8px 26px rgba(0,0,0,.09);padding:.65rem .9rem;display:flex;align-items:center;gap:.55rem;border:1px solid var(--g100);z-index:5}
+
+/* SPACING STACK FIX FOR MOBILE VIEWPORTS OVERLAPS */
+.af2{position:absolute;bottom:-14px;left:-14px;background:#fff;border-radius:13px;box-shadow:0 8px 26px rgba(0,0,0,.09);padding:.75rem 1rem;display:flex;align-items:center;gap:.65rem;border:1px solid var(--g100);z-index:5}
+@media(max-width:480px){
+  .af2 {position:relative;bottom:0;left:0;margin-top:12px;margin-bottom:8px;display:inline-flex;width:auto;box-shadow:var(--sh-sm)}
+  .af1 {top:-8px;right:8px;padding:.5rem .75rem;min-width:80px}
+  .af1-n {font-size:1.5rem}
+}
+
 .aimg-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.65rem;margin-top:.65rem}
 .aimg-small{border-radius:12px;overflow:hidden;height:100px;position:relative}
 .aimg-small img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
@@ -208,8 +223,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .apt-ic{width:36px;height:36px;border-radius:10px;background:var(--ice-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
 .apt-t{font-weight:700;font-size:.87rem;color:var(--dark);margin-bottom:.15rem}
 .apt-d{font-size:.78rem;color:var(--muted);line-height:1.7}
-.area-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
-.area-chip{display:inline-flex;align-items:center;gap:4px;background:var(--ice-pale);border:1px solid var(--ice-mid);color:var(--ice-dark);font-size:.68rem;font-weight:700;padding:.25rem .7./** **/rem;border-radius:var(--r-pill)}
+
+/* SPACING AND PACKING CHIP AREA FIX */
+.area-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.2rem;line-height:2.2}
+.area-chip{display:inline-flex;align-items:center;gap:6px;background:var(--ice-pale);border:1px solid var(--ice-mid);color:var(--ice-dark);font-size:.72rem;font-weight:700;padding:.35rem .85rem;border-radius:var(--r-pill);white-space:nowrap}
 @media(max-width:1024px){.agrid{grid-template-columns:1fr;gap:2.5rem}}
 
 /* ── SERVICES ── */
@@ -276,9 +293,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .amc-btn-dark{background:var(--dark);color:#fff}
 .amc-btn-dark:hover{background:var(--ice);transform:translateY(-1px)}
 
-/* FIXED THE BADGE DISPLAY ISSUE & POINTER COMPILE TYPO */
 .badge-pop{position:absolute;top:12px;right:16px;background:var(--orange);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.28rem .7rem;border-radius:var(--r-pill);z-index:10;display:block}
-
 @media(max-width:768px){.amc-grid{grid-template-columns:1fr}}
 
 /* ── PROCESS ── */
@@ -345,8 +360,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2rem}
 .vc{border-radius:var(--r-card);overflow:hidden;background:var(--dark);position:relative;transition:transform .3s,box-shadow .3s}
 .vc:hover{transform:translateY(-4px);box-shadow:var(--sh-dark)}
-
-/* FIXED WRAPPER STABILITY LOGIC */
 .vc video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
 .vc-placeholder{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#0c3a5a,#0a1628);position:relative;cursor:pointer}
 .vc-placeholder img {width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
@@ -614,7 +627,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div class="agrid">
       <div class="amedia rv">
         <div class="af1"><div class="af1-n">10+</div><div class="af1-l">Years Exp.</div></div>
-        <div class="af2"><i class="fas fa-star" style="color:#f59e0b;font-size:1rem"></i><div><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:.82rem;color:var(--dark)">4.6★ Google Rated</div><div style="font-size:.68rem;color:var(--muted)">63+ verified reviews</div></div></div>
         <div class="aimg-main">
           <img src="images/robin-work-1.jpg"
                alt="Perfect Cool AC deep service in progress — indoor unit opened for cleaning in Ernakulam"
@@ -625,6 +637,15 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
             <div class="acap-stars">★★★★★ 4.6</div>
           </div>
         </div>
+        
+        <div class="af2">
+          <i class="fas fa-star" style="color:#f59e0b;font-size:1rem"></i>
+          <div>
+            <div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:.82rem;color:var(--dark)">4.6★ Google Rated</div>
+            <div style="font-size:.68rem;color:var(--muted)">63+ verified reviews</div>
+          </div>
+        </div>
+
         <div class="aimg-strip">
           <div class="aimg-small" style="cursor:pointer" onclick="playVideo('videos/VID-20260512-WA0011.mp4')">
             <img src="images/robin-work-1.jpg" alt="AC repair service video by Robin Perfect Cool" loading="lazy"/>
@@ -672,15 +693,16 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <div class="apt"><div class="apt-ic"><i class="fas fa-bullseye" style="color:var(--ice);font-size:.9rem"></i></div><div><div class="apt-t">Our Mission</div><div class="apt-d">Keeping every home and office cool with expert AC service, transparent pricing and genuine care — no hidden charges, no shortcuts.</div></div></div>
           <div class="apt"><div class="apt-ic"><i class="fas fa-map-marker-alt" style="color:var(--ice);font-size:.9rem"></i></div><div><div class="apt-t">Where We Serve</div><div class="apt-d">Based in Thrippunithura — covering Vyttila, Mulanthuruthy, Nadakkavu, Udayamperoor, Chottanikara and all of Ernakulam, same day.</div></div></div>
         </div>
-        <div class="area-chips" style="margin-bottom:1.5rem">
-          <span class="area-chip"><i class="fas fa-map-pin" style="font-size:.6rem"></i>Thrippunithura</span>
-          <span class="area-chip"><i class="fas fa-map-pin" style="font-size:.6rem"></i>Vyttila</span>
-          <span class="area-chip"><i class="fas fa-map-pin" style="font-size:.6rem"></i>Mulanthuruthy</span>
-          <span class="area-chip"><i class="fas fa-map-pin" style="font-size:.6rem"></i>Nadakkavu</span>
-          <span class="area-chip"><i class="fas fa-map-pin" style="font-size:.6rem"></i>Udayamperoor</span>
-          <span class="area-chip"><i class="fas fa-map-pin" style="font-size:.6rem"></i>Chottanikara</span>
+        
+        <div class="area-chips">
+          <span class="area-chip"><i class="fas fa-map-pin" style="color:var(--ice)"></i>Thrippunithura</span>
+          <span class="area-chip"><i class="fas fa-map-pin" style="color:var(--ice)"></i>Vyttila</span>
+          <span class="area-chip"><i class="fas fa-map-pin" style="color:var(--ice)"></i>Mulanthuruthy</span>
+          <span class="area-chip"><i class="fas fa-map-pin" style="color:var(--ice)"></i>Nadakkavu</span>
+          <span class="area-chip"><i class="fas fa-map-pin" style="color:var(--ice)"></i>Udayamperoor</span>
+          <span class="area-chip"><i class="fas fa-map-pin" style="color:var(--ice)"></i>Chottanikara</span>
         </div>
-        <div style="display:flex;gap:.65rem;flex-wrap:wrap">
+        <div style="display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.5rem">
           <a href="https://wa.me/917012310205?text=Hi%20Robin%2C%20I%20need%20AC%20service" class="btn btn-wa" target="_blank" rel="noopener" style="gap:.5rem"><i class="fab fa-whatsapp"></i>Chat with Robin</a>
           <a href="#services" class="btn btn-outline">View Services →</a>
         </div>
@@ -808,7 +830,19 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   <div class="container">
     <div class="rh">
       <div class="rv"><span class="label">Real Reviews</span><h2 class="section-title">What Customers Say</h2><p class="section-sub">63 verified 4.6-star Google reviews from customers across Ernakulam</p></div>
-      <div class="rscore rv d1"><div class="rs-big">4.6</div><div class="rs-stars">★★★★★</div><div class="rs-label">63 Google Reviews</div><div style="width:100%"><div class="rs-row">5★ <div class="rs-bar"><div class="rs-fill" style="width:88%"></div></div><span class="rs-cnt">54</span></div><div class="rs-row">4★ <div class="rs-bar"><div class="rs-fill" style="width:8%"></div></div><span class="rs-cnt">6</span></div><div class="rs-row">3★ <div class="rs-bar"><div class="rs-fill" style="width:4%"></div></div><span class="rs-cnt">3</span></div></div></div>
+      <div class="rscore rv d1">
+        <div class="rs-big">4.6</div>
+        <div class="rs-stars">★★★★★</div>
+        <div class="rs-label">63 Google Reviews</div>
+        <div style="width:100%; margin-bottom: 1.2rem;">
+          <div class="rs-row">5★ <div class="rs-bar"><div class="rs-fill" style="width:88%"></div></div><span class="rs-cnt">54</span></div>
+          <div class="rs-row">4★ <div class="rs-bar"><div class="rs-fill" style="width:8%"></div></div><span class="rs-cnt">6</span></div>
+          <div class="rs-row">3★ <div class="rs-bar"><div class="rs-fill" style="width:4%"></div></div><span class="rs-cnt">3</span></div>
+        </div>
+        <a href="https://g.page/r/YOUR_GMB_REVIEW_ID_HERE/review" target="_blank" rel="noopener" class="btn btn-outline" style="padding: .5rem 1.2rem; font-size: .8rem; width:100%; justify-content:center;">
+          <i class="fab fa-google" style="color: #ea4335;"></i> Leave a Google Review
+        </a>
+      </div>
     </div>
     <div class="rgrid rv">
       <div class="rc dark d1"><div class="rc-top"><div><div class="rc-name">Ajith Kumar K B</div><div class="rc-guide">Local Guide · 14 reviews</div><div class="rc-loc">Ernakulam</div></div><div class="rc-verified">✓ Verified</div></div><div class="rc-stars">★★★★★</div><div class="rc-text">"Called Robin when my Daikin broke. He came within an hour, found and fixed a refrigerant leak, had us cool by midnight. Outstanding service and fair price. Highly recommended."</div><div class="rc-source"><i class="fas fa-map-pin" style="font-size:.7rem"></i>Google Review</div></div>
